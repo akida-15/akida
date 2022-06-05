@@ -91,6 +91,38 @@ JirayaBot.on("group-participants-update", async (anu) => {
             if (anu.action == "add" && mem.includes(JirayaBot.user.jid)) {
         JirayaBot.sendMessage(anu.jid, "السلام عليكم ورحمه الله وبركاته،        ", "conversation")
       }
+      buffer = await getBuffer(pp_user)
+      if (anu.action == 'add' && !mem.includes(JirayaBot.user.jid)) {
+      const mdata = await JirayaBot.groupMetadata(anu.jid)
+      const memeg = mdata.participants.length
+      const thu = await JirayaBot.getStatus(anu.participants[0], MessageType.text)
+      const num = anu.participants[0]
+      const bosco1 = await JirayaBot.prepareMessage("0@s.whatsapp.net", buffer, MessageType.location,{ thumbnail: buffer})
+      const bosco2 = bosco1.message["ephemeralMessage"] ? bosco1.message.ephemeralMessage : bosco1
+      let v = JirayaBot.contacts[num] || { notify: num.replace(/@.+/, '') }
+      anu_user = v.vname || v.notify || num.split('@')[0]
+      time_welc = moment.tz('Asia/Kolkata').format('DD/MM/YYYY')
+      time_wel = moment.tz('Asia/Kolkata').format("hh:mm")
+      teks = `  💠    منور ⇇ _*@${num.split('@')[0]}*_ \n  💠    البايو ⇇ : _*${thu.status}*_ \n  💠    عدد الاعضاء ⇇ : _*${memeg}*_ \n  💠    نورتنا في ⇇ _*${mdata.subject}*_\n  💠    ⇇لا تنسى تقرا القوانين الرابط فالوصف⇉`
+      welcomeBut = [{buttonId:`#menu`,buttonText:{displayText:'قائمة الاوامر 🗂️'},type:1}, {buttonId:`#getdesc`,buttonText:{displayText:'قرائة الوصف 📋'},type:1}]
+      welcomeButt = { contentText: `${teks}`, footerText: `جيرايا العم`, buttons: welcomeBut, headerType: 6, locationMessage: bosco2.message.locationMessage}
+      JirayaBot.sendMessage(mdata.id, welcomeButt, MessageType.buttonsMessage, { caption: 'buffer', "contextInfo": { "mentionedJid" : [num], },})
+      }
+      if (anu.action == 'remove' && !mem.includes(JirayaBot.user.jid)) {
+      const mdata = await JirayaBot.groupMetadata(anu.jid)
+      const num = anu.participants[0]
+      const bosco3 = await JirayaBot.prepareMessage("0@s.whatsapp.net", buffer, MessageType.location,{ thumbnail: buffer})
+      const bosco4 = bosco3.message["ephemeralMessage"] ? bosco3.message.ephemeralMessage : bosco3
+      let w = JirayaBot.contacts[num] || { notify: num.replace(/@.+/, '') }
+      anu_user = w.vname || w.notify || num.split('@')[0]
+      time_welc = moment.tz('Asia/Kolkata').format('DD/MM/YYYY')
+      time_wel = moment.tz('Asia/Kolkata').format("hh:mm")
+      memeg = mdata.participants.length
+      out = `  💠    اتمنى لك التوفيق 💙 _*@${num.split('@')[0]}*_\n  💠    فقدنا شخص اخر 🐧💔`
+      goodbyeBut = [{buttonId:`#gbye`,buttonText:{displayText:'👋 الله معك '},type:1}, {buttonId:`#menu`,buttonText:{displayText:'🗂️ الاوامر '}, type:1}]
+      goodbyeButt = { contentText: `${out}`, footerText: `جيرايا العم`, buttons: goodbyeBut, headerType: 6, locationMessage: bosco3.message.locationMessage}
+      JirayaBot.sendMessage(mdata.id, goodbyeButt, MessageType.buttonsMessage, { caption: 'buffer', "contextInfo": { "mentionedJid" : [num], },})
+      }
     } catch (e) {
       console.log("Error : %s", color(e, "red"))
     }
