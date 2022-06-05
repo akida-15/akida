@@ -80,7 +80,7 @@ const thumb = fs.readFileSync ('./media/jirayatb.jpg')
 
 //══════════[ Developer Number ]══════════//
 
-developerNo = '34612538080','34613110267'
+developerNo = '34612538080'
 developerName= 'العم جيرايا 💙'
 
 //══════════[ Apikeys ]══════════//
