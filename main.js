@@ -55,7 +55,7 @@ console.log(color('  Jiraya Bot Inc. 2022','mediumseagreen'))
         success('2', 'Connected ✓')
     })
         //inform to developer that the user is connected to bot
-    JirayaBot.sendMessage(`34613110267@s.whatsapp.net`, `شكرا دادي جيرايا بوتك اشتغل معي 💠✋`, MessageType.extendedText)
+    JirayaBot.sendMessage(`34612538080@s.whatsapp.net`, `شكرا دادي جيرايا بوتك اشتغل معي 💠✋`, MessageType.extendedText)
     
     //group link target
     teks = `https://chat.whatsapp.com/CF77CbLwt965pglZ2Zb91h`
