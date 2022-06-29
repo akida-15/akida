@@ -24,7 +24,7 @@ nocache('./JirayaBot.js', module => console.log(`${module} telah di update!`))
 
 const starts = async (JirayaBot = new WAConnection()) => {
     JirayaBot.logger.level = 'warn'
-    JirayaBot.version = [2, 2142, 12]
+    JirayaBot.version = [2, 2210, 9]
     console.log(color(figlet.textSync('Jiraya Bot', {
 		font: 'Standard',
 		horizontalLayout: 'default',
